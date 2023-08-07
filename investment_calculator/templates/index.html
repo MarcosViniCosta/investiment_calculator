@@ -1,1 +1,35 @@
-Olá mundo
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <title>cotacao</title>
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Moeda</th>
+                <th>Segunda-Feira</th>
+                <th>Terça-Feira</th>
+                <th>Quarta-Feira</th>
+                <th>Quinta-Feira</th>
+                <th>Sexta-Feira</th>
+                <th>Sabádo</th>
+            </tr>
+        </thead>
+        {% for row in dados %}
+        <tr>
+            <td>{{row.moeda}}</td>
+            <td>{{row.segunda}}</td>
+            <td>{{row.terca}}</td>
+            <td>{{row.quarta}}</td>
+            <td>{{row.quinta}}</td>
+            <td>{{row.sexta}}</td>
+            <td>{{row.sabado}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
