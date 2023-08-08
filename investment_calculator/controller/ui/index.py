@@ -1,9 +1,12 @@
+from typing import List
+
 from fastapi import APIRouter, Depends
 from fastapi.responses import HTMLResponse
 from fastapi.requests import Request
 from fastapi.templating import Jinja2Templates
 
-from dependencies import get_jinja_environment
+from dependencies import get_jinja_environment, get_price_quote_gateways
+from domain.gateway.price_quote import PriceQuoteGateway
 
 router = APIRouter(prefix='')
 
@@ -11,33 +14,28 @@ router = APIRouter(prefix='')
 @router.get('/', response_class=HTMLResponse)
 async def get_index(
         request: Request,
-        jinja_environment: Jinja2Templates = Depends(get_jinja_environment)
+        jinja_environment: Jinja2Templates = Depends(get_jinja_environment),
+        price_quote_gateways: List[PriceQuoteGateway] = Depends(get_price_quote_gateways)
+
 ):
+    bit_preco = price_quote_gateways[0]
+
+    value = await bit_preco.get_price('BTC')
 
     dados = [
         {
-            'moeda':'BTC',
-            'segunda': 150000.00,
-            'terca': 150000.00,
-            'quarta': 150000.00,
-            'quinta': 150000.00,
-            'sexta': 150000.00,
-            'sabado': 150000.00,
-         },
-
-        {
-            'moeda': 'dolar',
-            'segunda': 150000.00,
-            'terca': 150000.00,
-            'quarta': 150000.00,
-            'quinta': 150000.00,
-            'sexta': 150000.00,
-            'sabado': 150000.00,
+            'moeda': 'BTC',
+            'segunda': value,
+            'terca': value,
+            'quarta': value,
+            'quinta': value,
+            'sexta': value,
+            'sabado': value,
         },
 
     ]
 
     return jinja_environment.TemplateResponse(
         'index.html',
-        {'request': request, 'dados':dados}
+        {'request': request, 'dados': dados}
     )
