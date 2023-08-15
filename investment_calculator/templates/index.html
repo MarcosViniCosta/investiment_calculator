@@ -11,23 +11,14 @@
         <thead>
             <tr>
                 <th>Moeda</th>
-                <th>Segunda-Feira</th>
-                <th>Terça-Feira</th>
-                <th>Quarta-Feira</th>
-                <th>Quinta-Feira</th>
-                <th>Sexta-Feira</th>
-                <th>Sabádo</th>
+                <th>Bit Preço</th>
             </tr>
         </thead>
         {% for row in dados %}
         <tr>
-            <td>{{row.moeda}}</td>
-            <td>{{row.segunda}}</td>
-            <td>{{row.terca}}</td>
-            <td>{{row.quarta}}</td>
-            <td>{{row.quinta}}</td>
-            <td>{{row.sexta}}</td>
-            <td>{{row.sabado}}</td>
+            <td>{{row.currency}}</td>
+            <td>{{row.bit_preco}}</td>
+
         </tr>
         {% endfor %}
     </table>

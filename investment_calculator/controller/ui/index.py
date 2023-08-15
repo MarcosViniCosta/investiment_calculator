@@ -21,19 +21,7 @@ async def get_index(
     bit_preco = price_quote_gateways[0]
 
     value = await bit_preco.get_price('BTC')
-
-    dados = [
-        {
-            'moeda': 'BTC',
-            'segunda': value,
-            'terca': value,
-            'quarta': value,
-            'quinta': value,
-            'sexta': value,
-            'sabado': value,
-        },
-
-    ]
+    dados = list([dict(currency='BTC', bit_preco=value)])
 
     return jinja_environment.TemplateResponse(
         'index.html',
