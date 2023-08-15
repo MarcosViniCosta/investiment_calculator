@@ -12,13 +12,17 @@
             <tr>
                 <th>Moeda</th>
                 <th>Bit Preço</th>
+                <th>Mercado Bitcoin</th>
+                <th>Awesome API</th>
+
             </tr>
         </thead>
         {% for row in dados %}
         <tr>
             <td>{{row.currency}}</td>
             <td>{{row.bit_preco}}</td>
-
+            <td>{{row.mercado_bitcoin}}</td>
+            <td>{{row.awesome_api}}</td>
         </tr>
         {% endfor %}
     </table>
