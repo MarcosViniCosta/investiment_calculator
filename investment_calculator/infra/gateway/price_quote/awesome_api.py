@@ -1,10 +1,29 @@
+__all__ = ['PriceQuoteAwesomeApiGateway', 'PriceQuoteAwesomeApiModel']
+
+from datetime import datetime
+
 from aiohttp import ClientSession
+from pydantic import BaseModel
 
 from domain.gateway.price_quote import PriceQuoteGateway
 
 
-class PriceQuoteAwesomeApiGateway(PriceQuoteGateway):
+class PriceQuoteAwesomeApiModel(BaseModel):
+    code: str
+    codein: str
+    name: str
+    high: float
+    low: float
+    varBird: float
+    pctChange: float
+    bid: float
+    ask: float
+    timestamp: datetime
+    create_date: datetime
 
+
+
+class PriceQuoteAwesomeApiGateway(PriceQuoteGateway):
 
     def __init__(self):
         self. _client = ClientSession(base_url='https://economia.awesomeapi.com.br/')
